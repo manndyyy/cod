@@ -1,0 +1,62 @@
+//https://www.hackerrank.com/challenges/anagram/problem
+/*
+Sample Input
+
+6
+aaabbb
+ab
+abc
+mnop
+xyyx
+xaxbbbxx
+
+Sample Output
+
+3
+1
+-1
+2
+0
+1
+
+Explanation
+
+Test Case #01: We split into two strings ='aaa' and ='bbb'. We have to replace all three characters from the first string with 'b' to make the strings anagrams.
+
+Test Case #02: You have to replace 'a' with 'b', which will generate "bb".
+
+Test Case #03: It is not possible for two strings of unequal length to be anagrams of one another.
+
+Test Case #04: We have to replace both the characters of first string ("mn") to make it an anagram of the other one.
+
+Test Case #05: S1 and S2 are already anagrams of one another.
+
+Test Case #06: Here S1 = "xaxb" and S2 = "bbxx". You must replace 'a' from S1 with 'b' so that S1 = "xbxb".
+
+
+*/
+
+static int anagram(String s) {
+        int a[] = new int [26];
+        int b[] = new int [26];
+        int c=s.length();
+        Arrays.fill(a, 0);
+        Arrays.fill(b, 0);
+        if(c%2!=0)
+            return -1;
+        else{
+            for(int i=0;i<c/2;i++){
+                char x,y;
+                x=s.charAt(i);
+                y=s.charAt((c/2)+i);
+                a[x-'a']++;
+                b[y-'a']++;
+            }
+            int z=0;
+            for(int i=0;i<26;i++){
+                z+=Math.abs(a[i]-b[i]);
+            }
+            return z/2;
+        }
+//return 1;
+    }
