@@ -1,0 +1,60 @@
+//https://www.hackerrank.com/challenges/balanced-brackets/problem
+/*
+Sample Input
+
+3
+{[()]}
+{[(])}
+{{[[(())]]}}
+
+Sample Output
+
+YES
+NO
+YES
+
+Explanation
+
+    The string {[()]} meets both criteria for being a balanced string, so we print YES on a new line.
+    The string {[(])} is not balanced because the brackets enclosed by the matched pair { and } are not balanced: [(]).
+    The string {{[[(())]]}} meets both criteria for being a balanced string, so we print YES on a new line. 
+
+
+*/
+
+static String isBalanced(String s) {
+        Stack<Character> st = new Stack<Character>();
+        //int top = -1;
+        try{for(int i=0;i<s.length();i++){
+            char x=s.charAt(i);
+            if(x=='{'||x=='['||x=='('){
+                st.push(x);
+            }
+            else if(x==')'){
+                if(st.peek()!='(')
+                    return "NO";
+                else{
+                    st.pop();
+                }
+            }
+            else if(x=='}'){
+                if(st.peek()!='{')
+                    return "NO";
+                else{
+                    st.pop();
+                }
+            }
+            else if(x==']'){
+                if(st.peek()!='[')
+                    return "NO";
+                else{
+                    st.pop();
+                }
+            }
+              }
+        return st.isEmpty()?"YES":"NO";
+        }
+        catch(Exception e){
+            return "NO";
+        }
+   }
