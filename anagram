@@ -36,12 +36,10 @@ Test Case #06: Here S1 = "xaxb" and S2 = "bbxx". You must replace 'a' from S1 wi
 
 */
 
-static int anagram(String s) {
+  static int anagram(String s) {
         int a[] = new int [26];
-        int b[] = new int [26];
         int c=s.length();
         Arrays.fill(a, 0);
-        Arrays.fill(b, 0);
         if(c%2!=0)
             return -1;
         else{
@@ -50,13 +48,13 @@ static int anagram(String s) {
                 x=s.charAt(i);
                 y=s.charAt((c/2)+i);
                 a[x-'a']++;
-                b[y-'a']++;
+                a[y-'a']--;
             }
             int z=0;
             for(int i=0;i<26;i++){
-                z+=Math.abs(a[i]-b[i]);
+                if(a[i]>0)
+                    z+=a[i];
             }
-            return z/2;
+            return z;
         }
-//return 1;
     }
