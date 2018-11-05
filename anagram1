@@ -1,0 +1,71 @@
+/*
+input :
+cat,eat,hat,tea,ate,act,tac,ttc,tha
+output:
+[[cat, act, tac], [eat, tea, ate], [hat, tha], [ttc]]
+[cat, act, tac]
+[eat, tea, ate]
+[hat, tha]
+[ttc]
+*/
+import java.io.*;
+import java.util.*;
+class anagram1{
+
+    public static void main (String ar[]){
+        Scanner sc = new Scanner(System.in);
+        String arr=sc.nextLine();
+        String a[]=arr.split(",");
+        List<ArrayList> li = new ArrayList<ArrayList>();
+        for(int i=0;i<a.length;i++){
+            ArrayList<String> ls = new ArrayList<String>();
+           // System.out.println(a[i]+"a");
+            for(int j=i;j<a.length;j++){
+                //System.out.println(a[j]+"ba");
+              if(a[i].equals("-")== false && a[j].equals("-")==false){
+             //       System.out.println(a[j]+"b");
+                    if(anagram(a[i],a[j])){
+                        ls.add(a[j]);
+                        //System.out.println(a[j]+"c");
+                        if(j!=i){
+                            a[j]="-";}
+                    }
+                }
+            }
+            if(ls.isEmpty() == false)
+                  li.add(ls);
+        }
+        System.out.println(li);
+        for (ArrayList num : li) {               
+           //for (String num1 : num) {               
+            System.out.print(num);
+          // }
+            System.out.println();
+        }
+
+
+    }
+
+    static boolean anagram(String s1,String s2) {
+        int a[] = new int [26];
+        //int c=s.length();
+        
+        if(s1.length()!=s2.length())
+            return false;
+        for(int i=0;i<s1.length();i++){
+            char x,y;
+            x=s1.charAt(i);
+            y=s2.charAt(i);
+            a[x-'a']++;
+            a[y-'a']--;
+        }
+        for(int i=0;i<26;i++){
+            
+            if(a[i]!=0)
+                return false;
+                
+        }
+        return true;
+            
+    }
+}
