@@ -1,0 +1,35 @@
+//https://www.hackerrank.com/contests/hourrank-30/challenges/video-conference/problem
+
+
+public static List<String> solve(List<String> names) {
+    // Write your code here
+        ArrayList<String> l = new ArrayList<String>();
+        HashSet<String> m = new HashSet<String>();
+        HashMap<String,Integer> n = new HashMap<String,Integer>();
+        
+        for(String li: names){
+            if(n.containsKey(li)){
+                int x=n.get(li);
+                l.add(li+" "+(x+1));
+                n.put(li,x+1);
+            }
+            else{
+                n.put(li,1);
+                String t="";
+                boolean insert = false;
+                for(int i = 0;i<li.length();i++){
+                    char y=li.charAt(i);
+                    t=t+y;
+                    if(!m.contains(t) && !insert){
+                        l.add(t);insert=true;
+                    }
+                    m.add(t);
+                }
+                if(!insert){
+                    l.add(t);
+                    m.add(t);
+                }
+            }
+        }
+        return l;
+    }
